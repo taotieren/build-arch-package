@@ -2,6 +2,9 @@
 name: build-arch-package
 description: Build an Arch Linux package
 inputs:
+  BUILDING:
+    description: Pacman configuration file used
+    required: true
   PKGBUILD:
     description: PKGBUILD path
     required: true
