@@ -8,6 +8,9 @@ inputs:
   PKGBUILD:
     description: PKGBUILD path
     required: true
+  DEPENDS:
+    description: PKGBUILD path depends
+    required: true
   OUTDIR:
     description: Output directory to store the built package (relative to $HOME)
     required: false
