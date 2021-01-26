@@ -35,7 +35,7 @@ Key            | Description                                 | Required | Defaul
 See：[DeveloperWiki:Building_in_a_clean_chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot)
 
 Target repository |	Architecture	| Build script to use	| Pacman configuration file used|
------------------:|----------------:|---------------------:|------------------------------:|
+------------------|-----------------|-----------------------|-------------------------------|
 extra/community	  |  x86_64     	|extra-x86_64-build	   | /usr/share/devtools/pacman-extra.conf
 testing/community-testing |	x86_64	|testing-x86_64-build |	/usr/share/devtools/pacman-testing.conf
 staging/community-staging |	x86_64	|staging-x86_64-build| 	/usr/share/devtools/pacman-staging.conf
