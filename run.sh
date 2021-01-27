@@ -18,7 +18,9 @@ PKGBUILD_DIR=$(dirname $(readlink -f $INPUT_PKGBUILD))
 
 cat  /etc/pacman.conf
 
-sed -i '/#Server = file:///home/custompkgs /a [archlinuxcn]\n Server = https://repo.archlinuxcn.org/$arch' /etc/pacman.conf
+sed -i '/#[custom]/a [archlinuxcn]\n Server = https://repo.archlinuxcn.org/$arch' /etc/pacman.conf
+
+cat  /etc/pacman.conf
 
 pacman -Syu --noconfirm --noprogressbar --needed archlinuxcn-keyring
 
