@@ -18,7 +18,7 @@ PKGBUILD_DIR=$(dirname $(readlink -f $INPUT_PKGBUILD))
 
 cat  /etc/pacman.conf
 
-sed -i '/#[custom]/a [archlinuxcn]\n Server = https://repo.archlinuxcn.org/$arch' /etc/pacman.conf
+sed -i 's/#[custom]/[archlinuxcn]\n Server = https://repo.archlinuxcn.org/$arch/g' /etc/pacman.conf
 
 cat  /etc/pacman.conf
 
