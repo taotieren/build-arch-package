@@ -1,19 +1,4 @@
 #!/bin/bash -ex
-
-if [ -z "$INPUT_BUILDING" ] || [ -z "$INPUT_PKGBUILD" ] || [ -z "$INPUT_OUTDIR" ] || [ -z "$GITHUB_SHA" ]; then
-    echo 'Missing environment variables'
-    exit 1
-fi
-
-# Resolve environment paths
-INPUT_BUILDING="$(eval echo $INPUT_BUILDING)"
-INPUT_PKGBUILD="$(eval echo $INPUT_PKGBUILD)"
-INPUT_DEPENDS="$(eval echo $INPUT_DEPENDS)"
-INPUT_OUTDIR="$(eval echo $INPUT_OUTDIR)"
-
-# Get PKGBUILD dir
-PKGBUILD_DIR=$(dirname $(readlink -f $INPUT_PKGBUILD))
-
 # Add ArchLinuxCN mirrors
 
 cat  > /etc/pacman.conf << EOF
@@ -123,9 +108,22 @@ NoExtract  = usr/share/vim/vim*/lang/*
 
 EOF
 
-cat  /etc/pacman.conf
+if [ -z "$INPUT_BUILDING" ] || [ -z "$INPUT_PKGBUILD" ] || [ -z "$INPUT_OUTDIR" ] || [ -z "$GITHUB_SHA" ]; then
+    echo 'Missing environment variables'
+    exit 1
+fi
 
-pacman -Syu --noconfirm --noprogressbar --needed base-devel archlinuxcn-keyring  btrfs-progs dbus sudo
+# Resolve environment paths
+INPUT_BUILDING="$(eval echo $INPUT_BUILDING)"
+INPUT_PKGBUILD="$(eval echo $INPUT_PKGBUILD)"
+INPUT_DEPENDS="$(eval echo $INPUT_DEPENDS)"
+INPUT_OUTDIR="$(eval echo $INPUT_OUTDIR)"
+
+
+# Get PKGBUILD dir
+PKGBUILD_DIR=$(dirname $(readlink -f $INPUT_PKGBUILD))
+
+pacman -Syu --noconfirm --noprogressbar --needed base-devel archlinuxcn-keyring btrfs-progs dbus sudo
 
 pacman -Syu --noconfirm --noprogressbar --needed devtools-cn
 
