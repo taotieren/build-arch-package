@@ -14,7 +14,13 @@ INPUT_OUTDIR="$(eval echo $INPUT_OUTDIR)"
 # Get PKGBUILD dir
 PKGBUILD_DIR=$(dirname $(readlink -f $INPUT_PKGBUILD))
 
-pacman -Syu --noconfirm --noprogressbar --needed base-devel devtools btrfs-progs dbus sudo
+# Add ArchLinuxCN mirrors
+
+sed -i '/#[multilib]/a [archlinuxcn]\n Server = https://repo.archlinuxcn.org/$arch' /etc/pacman.conf
+
+pacman -Syu --noconfirm --noprogressbar --needed archlinuxcn-keyring
+
+pacman -Syu --noconfirm --noprogressbar --needed base-devel devtools-cn btrfs-progs dbus sudo
 
 dbus-uuidgen --ensure=/etc/machine-id
 
