@@ -125,9 +125,9 @@ EOF
 
 cat  /etc/pacman.conf
 
-pacman -Syu --noconfirm --noprogressbar --needed archlinuxcn-keyring
+pacman -Syu --noconfirm --noprogressbar --needed base-devel archlinuxcn-keyring  btrfs-progs dbus sudo
 
-pacman -Syu --noconfirm --noprogressbar --needed base-devel devtools-cn btrfs-progs dbus sudo
+pacman -Syu --noconfirm --noprogressbar --needed devtools-cn
 
 dbus-uuidgen --ensure=/etc/machine-id
 
