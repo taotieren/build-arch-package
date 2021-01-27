@@ -29,8 +29,7 @@ chown user PKGBUILD
 
 # Build the package
 # See：https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot
-$INPUT_BUILDING -- -U user -I $INPUT_DEPENDS
-$INPUT_BUILDING -- -U user
+$INPUT_BUILDING -- -I $INPUT_DEPENDS  -U user 
 
 # Save the artifacts
 mkdir -p "$INPUT_OUTDIR"
