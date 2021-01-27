@@ -1,6 +1,17 @@
 #!/bin/bash -ex
-# Add ArchLinuxCN mirrors
 
+if [ -z "$INPUT_BUILDING" ] || [ -z "$INPUT_PKGBUILD" ] || [ -z "$INPUT_OUTDIR" ] || [ -z "$GITHUB_SHA" ]; then
+    echo 'Missing environment variables'
+    exit 1
+fi
+
+# Resolve environment paths
+INPUT_BUILDING="$(eval echo $INPUT_BUILDING)"
+INPUT_PKGBUILD="$(eval echo $INPUT_PKGBUILD)"
+INPUT_DEPENDS="$(eval echo $INPUT_DEPENDS)"
+INPUT_OUTDIR="$(eval echo $INPUT_OUTDIR)"
+
+# Add ArchLinuxCN mirrors
 cat  > /etc/pacman.conf << EOF
 #
 # /etc/pacman.conf
@@ -107,18 +118,6 @@ NoExtract  = usr/share/man/* usr/share/info/*
 NoExtract  = usr/share/vim/vim*/lang/*
 
 EOF
-
-if [ -z "$INPUT_BUILDING" ] || [ -z "$INPUT_PKGBUILD" ] || [ -z "$INPUT_OUTDIR" ] || [ -z "$GITHUB_SHA" ]; then
-    echo 'Missing environment variables'
-    exit 1
-fi
-
-# Resolve environment paths
-INPUT_BUILDING="$(eval echo $INPUT_BUILDING)"
-INPUT_PKGBUILD="$(eval echo $INPUT_PKGBUILD)"
-INPUT_DEPENDS="$(eval echo $INPUT_DEPENDS)"
-INPUT_OUTDIR="$(eval echo $INPUT_OUTDIR)"
-
 
 # Get PKGBUILD dir
 PKGBUILD_DIR=$(dirname $(readlink -f $INPUT_PKGBUILD))
