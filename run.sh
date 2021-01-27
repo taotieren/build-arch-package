@@ -14,13 +14,15 @@ INPUT_OUTDIR="$(eval echo $INPUT_OUTDIR)"
 # Add ArchLinuxCN mirrors
 cat  >> /etc/pacman.conf << EOF
 [archlinuxcn]
-Server = https://repo.archlinuxcn.org/$arch
+Server = https://mirror.xtom.com.hk/archlinuxcn/$arch
 EOF
+
 
 # Get PKGBUILD dir
 PKGBUILD_DIR=$(dirname $(readlink -f $INPUT_PKGBUILD))
+pacman -Syu --noconfirm --noprogressbar --needed archlinuxcn-keyring
 
-pacman -Syu --noconfirm --noprogressbar --needed base-devel archlinuxcn-keyring btrfs-progs dbus sudo
+pacman -Syu --noconfirm --noprogressbar --needed base-devel btrfs-progs dbus sudo
 
 pacman -Syu --noconfirm --noprogressbar --needed devtools-cn
 
