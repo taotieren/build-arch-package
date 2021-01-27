@@ -14,7 +14,7 @@ INPUT_OUTDIR="$(eval echo $INPUT_OUTDIR)"
 # Add ArchLinuxCN mirrors
 cat  >> /etc/pacman.conf << EOF
 [archlinuxcn]
-Server = https://repo.archlinuxcn.org/$arch/
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 EOF
 
 # Get PKGBUILD dir
